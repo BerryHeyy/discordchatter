@@ -92,6 +92,7 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 dependencies {
+    implementation('org.javacord:javacord:3.3.2')
     implementation("com.squareup.okhttp3:okhttp:4.9.0")
     implementation('com.googlecode.json-simple:json-simple:1.1.1')
     // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
