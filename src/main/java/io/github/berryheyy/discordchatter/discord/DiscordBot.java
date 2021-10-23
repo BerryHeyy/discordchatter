@@ -7,10 +7,8 @@ import org.javacord.api.DiscordApiBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
 
 import io.github.berryheyy.discordchatter.DiscordChatter;
-import io.github.berryheyy.discordchatter.Reference;
 import io.github.berryheyy.discordchatter.config.DiscordChatterConfig;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ChatType;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
