@@ -13,6 +13,14 @@ public final class DiscordChatterConfig {
     public static final ForgeConfigSpec.ConfigValue<String> system_avatar_url;
     public static final ForgeConfigSpec.ConfigValue<String> system_username;
 
+    public static final ForgeConfigSpec.ConfigValue<Boolean> display_mob_death_messages;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> display_death_messages;
+
+    public static final ForgeConfigSpec.ConfigValue<Boolean> display_join_messages;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> display_leave_messages;
+
+    
+
     static {
         BUILDER.push("DiscordChatter Technical Configs");
 
@@ -25,6 +33,13 @@ public final class DiscordChatterConfig {
 
         system_avatar_url = BUILDER.comment("The avatar of the system messages.").define("System Avatar URL", "https://cdn.discordapp.com/attachments/704815957088010300/901777307692310569/Phi_lc.svg.png");
         system_username = BUILDER.comment("The username of the system messages.").define("System Username", "System");
+
+        display_death_messages = BUILDER.define("Display Death Messages", true);
+        display_mob_death_messages = BUILDER.define("Display Mob Death Messages", false);
+        
+        display_join_messages = BUILDER.define("Display Player Join Messages", true);
+        display_leave_messages = BUILDER.define("Display Player Leave Messages", true);
+
 
         BUILDER.pop();
         SPEC = BUILDER.build();
