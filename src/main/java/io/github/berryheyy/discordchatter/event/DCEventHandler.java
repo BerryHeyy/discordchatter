@@ -13,25 +13,28 @@ import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
 public final class DCEventHandler {
 
     public static void init() {
-        MinecraftForge.EVENT_BUS.addListener(DCEventHandler::onMessage);
-        MinecraftForge.EVENT_BUS.addListener(DCEventHandler::serverSetup);
+        DistExecutor.safeRunWhenOn(Dist.DEDICATED_SERVER, () -> new SafeRunnable() {
+            @Override
+            public void run() {
+                MinecraftForge.EVENT_BUS.addListener(DCEventHandler::onMessage);
+                MinecraftForge.EVENT_BUS.addListener(DCEventHandler::serverSetup);
+            }} );
     }
 
     public static void onMessage(ServerChatEvent event) {
-        DistExecutor.safeRunWhenOn(Dist.DEDICATED_SERVER, () -> new SafeRunnable() {
-            @Override
-            public void run() {
-                WebhookHandler.sendChatMessage(event);
-                
-            }} );
+        WebhookHandler.sendChatMessage(event);
     }
 
     public static void serverSetup(FMLServerStartedEvent event) {
-        DistExecutor.safeRunWhenOn(Dist.DEDICATED_SERVER, () -> new SafeRunnable() {
-            @Override
-            public void run() {
-                DiscordBot.initiateBot(event);
-            }} );
+        DiscordBot.initiateBot(event);
+    }
+
+    public static void onPlayerJoin() {
+        
+    }
+
+    public static void onPlayerLeave() {
+        
     }
 
 
