@@ -16,7 +16,10 @@ public final class WebhookHandler {
     public static void sendChatMessage(ServerChatEvent event)
     {
         RequestBody body = RequestBody.create(String.format("{\"avatar_url\": \"https://crafatar.com/avatars/%s?overlay\", \"username\": \"%s\", \"content\": \"%s\"}", 
-            event.getPlayer().getUUID().toString(), event.getUsername(), event.getMessage()), JSON);
+            event.getPlayer().getUUID().toString(), 
+            event.getUsername(), 
+            event.getMessage()), 
+            JSON);
 
         Request request = new Request.Builder()
             .url(DiscordChatterConfig.webhook_url_string.get())
@@ -25,6 +28,25 @@ public final class WebhookHandler {
 
         try(Response response = client.newCall(request).execute()) {
             
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public static void sendSystemMessage(String message) {
+        RequestBody body = RequestBody.create(String.format("{\"avatar_url\": \"%s\", \"username\": \"%s\", \"content\": \"`%s`\"}", 
+            DiscordChatterConfig.system_avatar_url.get(),
+            DiscordChatterConfig.system_username.get(),
+            message), JSON);
+
+        Request request = new Request.Builder()
+            .url(DiscordChatterConfig.webhook_url_string.get())
+            .post(body)
+            .build();
+        
+        try(Response response = client.newCall(request).execute()) {
+        
         } catch (Exception e)
         {
             e.printStackTrace();
