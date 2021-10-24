@@ -19,6 +19,4 @@ public class DiscordChatter {
         ModLoadingContext.get().registerConfig(Type.SERVER, DiscordChatterConfig.SPEC, "discordchatter-server.toml");
         DCEventHandler.init();
     }
-
-    
 }

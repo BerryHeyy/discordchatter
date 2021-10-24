@@ -25,7 +25,9 @@ public final class DiscordBot {
     public static void initiateBot(FMLServerStartedEvent event)
     {
         server = event.getServer();
+        DiscordChatter.LOGGER.info("Connecting to bot client...");
         api = new DiscordApiBuilder().setToken(DiscordChatterConfig.bot_token_string.get()).login().join();
+        DiscordChatter.LOGGER.info("Connected successfully.");
         api.addMessageCreateListener(DiscordBot::onMessageCreate);
 
     }
@@ -35,8 +37,6 @@ public final class DiscordBot {
         if (event.getChannel().getId() != Long.parseLong(DiscordChatterConfig.channel_id_string.get())) return;
         if (event.getMessageAuthor().isWebhook()) return;
         if (event.getMessageAuthor().isBotUser()) return;
-        
-        DiscordChatter.LOGGER.info(event.getMessageContent());
 
         ITextComponent userframe = new TranslationTextComponent("<%s>", event.getMessageAuthor().getDisplayName()).withStyle((style) -> {
             return style.withColor(TextFormatting.BLUE)
@@ -48,7 +48,4 @@ public final class DiscordBot {
 
         server.getPlayerList().broadcastMessage(finalMessage, ChatType.CHAT, UUID.randomUUID());
     }
-
-    
-    
 }

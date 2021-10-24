@@ -17,9 +17,7 @@ public final class DiscordChatterConfig {
     public static final ForgeConfigSpec.ConfigValue<Boolean> display_death_messages;
 
     public static final ForgeConfigSpec.ConfigValue<Boolean> display_join_messages;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> display_leave_messages;
-
-    
+    public static final ForgeConfigSpec.ConfigValue<Boolean> display_leave_messages;    
 
     static {
         BUILDER.push("DiscordChatter Technical Configs");
